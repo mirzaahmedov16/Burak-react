@@ -11,6 +11,10 @@
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "noUncheckedSideEffectImports": false,
+    "paths": {
+      "swiper": ["./node_modules/swiper/swiper.d.ts"]
+    },
     "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
