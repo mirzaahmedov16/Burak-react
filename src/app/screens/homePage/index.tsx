@@ -28,6 +28,8 @@ export default function HomePage() {
     const { setPopularDishes } = actionDispatch(useDispatch());
     const { popularDishes } = useSelector(popularDishesRetriever);
 
+    console.log(import.meta.env.VITE_API_URL);
+
     useEffect(() => { }, []);
     return (
         <div className="homepage">
@@ -38,4 +40,5 @@ export default function HomePage() {
             <ActiveUsers />
             <Events />
         </div>);
-}    
+}
+
