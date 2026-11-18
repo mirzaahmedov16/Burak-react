@@ -5,10 +5,10 @@ import Card from "@mui/joy/Card";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
 import { CssVarsProvider } from "@mui/joy/styles";
-import VisibilityIconModule from "@mui/icons-material/Visibility";
-
-const VisibilityIcon = (VisibilityIconModule as unknown as { default: typeof VisibilityIconModule }).default;
+import VisibilityIconRaw from "@mui/icons-material/Visibility";
 import Divider from "../../components/divider";
+
+const VisibilityIcon = (VisibilityIconRaw as any).default ?? VisibilityIconRaw;
 
 const newDishes = [
     { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
@@ -36,7 +36,7 @@ export default function NewDishes() {
                                         </CardOverflow>
                                         <CardOverflow variant="soft" className="product-detail">
                                             <Stack className="info">
-                                                <Stack flexDirection="row">
+                                                <Stack direction="row">
                                                     <Typography
                                                         className="title"
                                                         sx={{

@@ -1,4 +1,5 @@
-export const serverApi: string = `{import.meta.env.VITE_API_URL}`;
+export const serverApi: string = import.meta.env.VITE_API_URL;
+
 export const Messages = {
   error1: "Something went wrong!",
   error2: "Please login first!",
