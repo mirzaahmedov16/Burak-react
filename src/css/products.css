@@ -25,15 +25,24 @@
     align-items: center;
 }
 
+/* ===== Search bar ===== */
+
 .products-page .products .top-text {
     position: relative;
     width: 100%;
-    height: 43px;
-    margin-top: 80px;
+    max-width: 1100px;
+    height: auto;
+    margin-top: 60px;
+    padding: 12px 12px 12px 36px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 24px;
+    background: #ffffff;
+    border-radius: 60px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
 }
 
 .products-page .products .top-text p {
@@ -46,6 +55,109 @@
     line-height: 43px;
     color: #343434;
 }
+
+.products-page .products .top-text .menu-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #343434;
+    white-space: nowrap;
+    letter-spacing: 0.3px;
+}
+
+.products-page .products .top-text .input {
+    flex: 1;
+    height: 52px;
+    padding: 0 22px;
+    background: #f6f1ea;
+    border-radius: 30px;
+    font-size: 16px;
+    color: #343434;
+    transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+/* MUI ning pastki chizig'ini o'chirish */
+.products-page .products .top-text .input::before,
+.products-page .products .top-text .input::after {
+    display: none;
+}
+
+.products-page .products .top-text .input input {
+    padding: 0;
+    height: 100%;
+}
+
+.products-page .products .top-text .input input::placeholder {
+    color: #9a8f80;
+    opacity: 1;
+}
+
+.products-page .products .top-text .input:focus-within {
+    background: #ffffff;
+    box-shadow: 0 0 0 2px #d7b586;
+}
+
+.products-page .products .top-text .search {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 32px;
+    border-radius: 30px;
+    background: #343434;
+    color: #d7b586;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: none;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+}
+
+.products-page .products .top-text .search:hover {
+    background: #d7b586;
+    color: #343434;
+}
+
+.products-page .products .top-text .search:hover svg path {
+    fill: #343434;
+}
+
+.products-page .products .top-text .search:active {
+    transform: scale(0.97);
+}
+
+.products-page .products .top-text .search svg {
+    width: 16px;
+    height: 17px;
+}
+
+.products-page .products .top-text .search svg path {
+    transition: fill 0.2s ease;
+}
+
+@media (max-width: 768px) {
+    .products-page .products .top-text {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 28px;
+    }
+
+    .products-page .products .top-text .menu-title {
+        width: 100%;
+        text-align: center;
+    }
+
+    .products-page .products .top-text .input {
+        flex: 1 1 100%;
+    }
+
+    .products-page .products .top-text .search {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ===== /Search bar ===== */
 
 .products-page .products .single-search-big-box {
     position: relative;
