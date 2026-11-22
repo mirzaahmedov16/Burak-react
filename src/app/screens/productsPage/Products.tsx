@@ -241,7 +241,8 @@ export default function Products(props: ProductsProps) {
                                     sx={{ backgroundImage: `url(${imagePath})` }}
                                 >
                                     <div className={"product-sale"}>{sizeVolume}</div>
-                                    <Button className={"shop-btn"} onClick={(e) => {
+                                    <Button className={"shop-btn"} 
+                                      onClick={(e) => {
                                         onAdd({
                                             _id: product._id,
                                             quantity: 1,
