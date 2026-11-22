@@ -4,16 +4,16 @@ import { AppRootState } from "../../../lib/types/screen";
 const selectProductsPage = (state: AppRootState) => state.productsPage; // => Refers to this object inside the Redux store:
 
 export const retrieveRestaurant = createSelector(
-  selectProductsPage,
-  (ProductsPage) => ProductsPage.restaurant,
+    selectProductsPage,
+    (ProductsPage) => ProductsPage.restaurant
 );
 
 export const retrieveChosenProduct = createSelector(
-  selectProductsPage,
-  (ProductsPage) => ProductsPage.chosenProduct,
+    selectProductsPage,
+    (ProductsPage) => ProductsPage.chosenProduct
 );
 
 export const retrieveProducts = createSelector(
-  selectProductsPage,
-  (ProductsPage) => ProductsPage.products,
-);
+    selectProductsPage,
+    (ProductsPage) => ProductsPage.products
+);                     

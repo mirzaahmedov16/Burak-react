@@ -1,32 +1,49 @@
-import React from "react";
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { RippleBadge } from "./MaterialTheme/styled";
-import HomePage from "./screens/homePage";
-import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
-import OrdersPage from "./screens/ordersPage";
-import UserPage from "./screens/userPage";
-import ProductsPage from "./screens/productsPage";
-import HomeNavbar from "./components/headers/HomeNavbar";
-import OtherNavbar from "./components/headers/OtherNavbar";
-import Footer from "./components/footer";
-import "../css/app.css";
+import React, { useState } from 'react';
+import { Link, Route, Switch, useLocation } from 'react-router-dom';
+import HomePage from './screens/homePage';
+import ProductsPage from './screens/productsPage';
+import OrdersPage from './screens/ordersPage';
+import UserPage from './screens/userPage';
+import HomeNavbar from './components/headers/HomeNavbar';
+import OtherNavbar from './components/headers/OtherNavbar';
+import Footer from './components/footer';
+import HelpPage from './screens/helpPage';
+import '../css/app.css';
 import "../css/navbar.css";
 import "../css/footer.css";
-import HelpPage from "./screens/helpPage";
-import Test from "./screens/Test";
+import { CartItem } from '../lib/types/search';
 
 function App() {
   const location = useLocation();
+  const cartJson: string | null = localStorage.getItem("cartData");
+  const currentCart = cartJson ? JSON.parse(cartJson) : [];
+  const [ cartItems,setCartItems ] = useState<CartItem[]>([])
 
-  console.log("location:", location)
+ /** HANDLERS **/
+  
+ const onAdd = (input: CartItem) => {
+  const exist: any = cartItems.find((item: CartItem) => item._id === input._id);
+  if(exist) {
+    const cartUpdate = cartItems.map((item: CartItem) =>
+      item._id === input._id 
+        ? {...exist, quantity: exist.quantity + 1}
+        : item
+    );
+    setCartItems(cartUpdate);
+    localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+  } else {
+    const cartUpdate = [...cartItems, {...input}];
+    setCartItems(cartUpdate);
+    localStorage.setItem("cartData", JSON.stringify(cartUpdate));
+  }
+ }
+
   return (
     <>
-      {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
-
-
+      {location.pathname === "/" ? <HomeNavbar cartItems = {cartItems} /> : <OtherNavbar cartItems = {cartItems}/>}
       <Switch>
         <Route path="/products">
-          <ProductsPage />
+          <ProductsPage onAdd={onAdd} />
         </Route>
         <Route path="/orders">
           <OrdersPage />
@@ -39,16 +56,12 @@ function App() {
         </Route>
         <Route path="/">
           <HomePage />
-          {/*    <Test /> */}
-
         </Route>
       </Switch>
       <Footer />
     </>
+
   );
 }
-
-
-
 
 export default App;
