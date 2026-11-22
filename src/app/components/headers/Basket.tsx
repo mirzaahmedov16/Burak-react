@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Button, Stack } from "@mui/material";
-import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
-import Menu from "@mui/material/Menu";
-import CancelIcon from "@mui/icons-material/Cancel";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import IconButtonRaw from "@mui/material/IconButton";
+import BadgeRaw from "@mui/material/Badge";
+import MenuRaw from "@mui/material/Menu";
+import CancelIconRaw from "@mui/icons-material/Cancel";
+import DeleteForeverIconRaw from "@mui/icons-material/DeleteForever";
+import ShoppingCartIconRaw from "@mui/icons-material/ShoppingCart";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 import { serverApi } from "../../../lib/config";
@@ -17,6 +17,14 @@ interface BasketProps {
     onDelete: (item: CartItem) => void;
     onDeleteAll: () => void;
 }
+
+const unwrap = (c: any) => (c && c.default ? c.default : c);
+const IconButton: any = unwrap(IconButtonRaw);
+const Badge: any = unwrap(BadgeRaw);
+const Menu: any = unwrap(MenuRaw);
+const CancelIcon: any = unwrap(CancelIconRaw);
+const DeleteForeverIcon: any = unwrap(DeleteForeverIconRaw);
+const ShoppingCartIcon: any = unwrap(ShoppingCartIconRaw);
 
 export default function Basket(props: BasketProps) { 
   const {cartItems, onAdd, onDelete, onDeleteAll, onRemove} = props; 

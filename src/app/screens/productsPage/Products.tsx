@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { Box, Button, Container, Input, Stack } from "@mui/material";
-import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import MonetizationOnIconRaw from "@mui/icons-material/MonetizationOn";
+import RemoveRedEyeIconRaw from "@mui/icons-material/RemoveRedEye";
 import Badge from "@mui/material/Badge";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIconRaw from "@mui/icons-material/ArrowBack";
+import ArrowForwardIconRaw from "@mui/icons-material/ArrowForward";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
@@ -32,6 +32,12 @@ const productsRetriever = createSelector(retrieveProducts, (products) => ({
 interface ProductsProps {
   onAdd: (item: CartItem) => void;
 }
+
+const unwrap = (c: any) => (c && c.default ? c.default : c);
+const RemoveRedEyeIcon: any = unwrap(RemoveRedEyeIconRaw);
+const MonetizationOnIcon: any = unwrap(MonetizationOnIconRaw);
+const ArrowBackIcon: any = unwrap(ArrowBackIconRaw);
+const ArrowForwardIcon: any = unwrap(ArrowForwardIconRaw);
 
 export default function Products(props: ProductsProps) {
     const {onAdd} = props;

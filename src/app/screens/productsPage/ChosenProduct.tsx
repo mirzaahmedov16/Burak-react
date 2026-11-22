@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import RemoveRedEyeIconRaw from "@mui/icons-material/RemoveRedEye";
 import Divider from "../../components/divider";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
@@ -40,6 +40,9 @@ const chosenProductRetriever = createSelector(retrieveChosenProduct, (chosenProd
 interface ChosenProductProps {
   onAdd: (item: CartItem) => void;
 }
+
+const unwrap = (c: any) => (c && c.default ? c.default : c);
+const RemoveRedEyeIcon: any = unwrap(RemoveRedEyeIconRaw);
 
 export default function ChosenProduct(props: ChosenProductProps) {
   const {onAdd} = props;                  
