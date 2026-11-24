@@ -52,7 +52,7 @@ class MemberService {
         try {
             const url = this.path + "/member/login";
             const result = await axios.post(url, input, { withCredentials: true });
-
+            console.log(result)
             const member: Member = result.data.member;
             localStorage.setItem("memberData", JSON.stringify(member));
 
