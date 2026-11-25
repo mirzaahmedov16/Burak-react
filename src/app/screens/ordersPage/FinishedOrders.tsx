@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Stack } from "@mui/material";
-import TabPanel from "@mui/lab/TabPanel";
+import TabPanelRaw from "@mui/lab/TabPanel";
 
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -8,6 +8,10 @@ import { serverApi } from "../../../lib/config";
 import { retrieveFinishedOrders } from "./selector";
 import { Product } from "../../../lib/types/product";
 import { Order, OrderItem } from "../../../lib/types/order";
+
+/** Vite ba'zan modulni { default: Component } ko'rinishida qaytaradi */
+const unwrap = (c: any) => (c && c.default ? c.default : c);
+const TabPanel: any = unwrap(TabPanelRaw);
 
 /** REDUX SLICE & SELECTOR */
 const finishedOrdersRetriever = createSelector(

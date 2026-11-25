@@ -1,9 +1,9 @@
 import { useState, SyntheticEvent, useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import TabsRaw from "@mui/material/Tabs";
+import TabRaw from "@mui/material/Tab";
+import TabContextRaw from "@mui/lab/TabContext";
+import LocationOnIconRaw from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
@@ -15,6 +15,13 @@ import "../../../css/order.css";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useGlobals } from "../../hooks/useGlobals";
+
+/** Vite ba'zan modulni { default: Component } ko'rinishida qaytaradi */
+const unwrap = (c: any) => (c && c.default ? c.default : c);
+const Tabs: any = unwrap(TabsRaw);
+const Tab: any = unwrap(TabRaw);
+const TabContext: any = unwrap(TabContextRaw);
+const LocationOnIcon: any = unwrap(LocationOnIconRaw);
 
 /** REDUX SLICE & SELECTOR */
 const actionDispatch = (dispatch: Dispatch) => ({

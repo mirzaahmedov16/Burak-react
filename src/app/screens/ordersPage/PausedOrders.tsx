@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Stack } from "@mui/material";
-import Button from "@mui/material/Button";
-import TabPanel from "@mui/lab/TabPanel";
+import ButtonRaw from "@mui/material/Button";
+import TabPanelRaw from "@mui/lab/TabPanel";
 
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -14,6 +14,11 @@ import { useGlobals } from "../../hooks/useGlobals";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import { T } from "../../../lib/types/common";
 import OrderService from "../../services/OrderService";
+
+/** Vite ba'zan modulni { default: Component } ko'rinishida qaytaradi */
+const unwrap = (c: any) => (c && c.default ? c.default : c);
+const Button: any = unwrap(ButtonRaw);
+const TabPanel: any = unwrap(TabPanelRaw);
 
 /** REDUX SLICE & SELECTOR */
 const pausedOrdersRetriever = createSelector(

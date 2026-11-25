@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import HomePageReducer from "./screens/homePage/slice";
 import ProductsPageReducer from "./screens/productsPage/slice";
+import OrdersPageReducer from "./screens/ordersPage/slice";
 import { logger } from "redux-logger";
 
 // Vite ba'zan default importni { default: ... } qilib beradi
@@ -11,6 +12,7 @@ export const store = configureStore({
   reducer: {
     homePage: unwrap(HomePageReducer),
     productsPage: unwrap(ProductsPageReducer),
+    ordersPage: unwrap(OrdersPageReducer),
   },
 });
 

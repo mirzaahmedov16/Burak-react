@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Stack } from "@mui/material";
-import Button from "@mui/material/Button";
-import TabPanel from "@mui/lab/TabPanel";
-import moment from "moment";
+import ButtonRaw from "@mui/material/Button";
+import TabPanelRaw from "@mui/lab/TabPanel";
+import momentRaw from "moment";
 
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -15,6 +15,12 @@ import { T } from "../../../lib/types/common";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
+
+/** Vite ba'zan modulni { default: Component } ko'rinishida qaytaradi */
+const unwrap = (c: any) => (c && c.default ? c.default : c);
+const Button: any = unwrap(ButtonRaw);
+const TabPanel: any = unwrap(TabPanelRaw);
+const moment: any = unwrap(momentRaw);
 
 /** REDUX SLICE & SELECTOR */
 const processOrdersRetriever = createSelector(
