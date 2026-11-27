@@ -15,6 +15,9 @@ import "../../../css/order.css";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import OrderService from "../../services/OrderService";
 import { useGlobals } from "../../hooks/useGlobals";
+import { useHistory } from "react-router-dom";
+import { serverApi } from "../../../lib/config";
+import { MemberType } from "../../../lib/enums/member.enum";
 
 /** Vite ba'zan modulni { default: Component } ko'rinishida qaytaradi */
 const unwrap = (c: any) => (c && c.default ? c.default : c);
@@ -32,13 +35,14 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
 export default function OrdersPage() {
   const { setPausedOrders, setProcessOrders, setFinishedOrders } = actionDispatch(useDispatch());
-  const {orderBuilder } = useGlobals();
+  const {orderBuilder, authMember } = useGlobals();
   const [value, setValue] = useState("1");
   const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
   page: 1,
   limit: 5,
   orderStatus: OrderStatus.PAUSE,
 });
+const history = useHistory();
 
 useEffect(() => {
   const order = new OrderService();
@@ -62,6 +66,8 @@ useEffect(() => {
   const handleChange = (e: SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };  
+
+  if(!authMember) history.push("/");
 
   return (
     <div className={"order-page"}>
@@ -96,25 +102,38 @@ useEffect(() => {
             <Box className={"member-box"}>
               <div className={"order-user-img"}>
                 <img
-                  src={"/icons/default-user.svg"}
+                  src={
+                    authMember?.memberImage 
+                     ? `${serverApi}/${authMember.memberImage}` 
+                     : "/icons/default-user.svg"
+                  }
                   className={"order-user-avatar"}
                   alt="user avatar"
                 />
                 <div className={"order-user-icon-box"}>
                   <img
-                    src={"/icons/user-badge.svg"}
+                    src={
+                      authMember?.memberType === MemberType.RESTAURANT
+                        ? "/icons/restaurant.svg"
+                        : "/icons/user-badge.svg"
+                    }
                     className={"order-user-prof-img"}
                     alt="user badge"
                   />
                 </div>
               </div>
-              <span className={"order-user-name"}>Oscar</span>
-              <span className={"order-user-prof"}>User</span>
+              <span className={"order-user-name"}>{authMember?.memberNick}</span>
+              <span className={"order-user-prof"}>{authMember?.memberType}</span>
             </Box>
             <div className={"liner"}></div>
             <Box className={"order-user-address"}>
               <LocationOnIcon />
-              <div className={"spec-address-txt"}>South Korea, Busan</div>
+              <div className={"spec-address-txt"}>
+                {authMember?.memberAddress 
+                    ? authMember.memberAddress 
+                    : "Do not exist!"
+                }
+              </div>
             </Box>
           </Box>
 
